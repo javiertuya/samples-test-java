@@ -1,0 +1,6 @@
+15, true,  false, false
+20, true,  true,  false
+0,  false, false, false
+20, false, true,  false
+10, false, false, true
+30, false, true,  true

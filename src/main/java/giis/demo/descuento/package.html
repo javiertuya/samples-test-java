@@ -1,0 +1,81 @@
+<meta charset="UTF-8">
+<body>
+Ejemplo de descuentos a clientes (implementacion MVC con Swing).
+
+<p>Este ejemplo se ha desarrollado siguiendo la secuencia de las historias de usuario que se muestran más abajo.
+A continuacón de los criterios de aceptación de cada una se indican detalles sobre las partes de 
+la aplicación que se han desarrollado y las pruebas automatizadas correspondientes.
+<br/>NOTA: Para facilitar el uso de este ejemplo todos los arhcivos se incluyen en un único paquete. 
+En una aplicación donde aumentará el número de archivos de código fuente, deberán clasificarse en los subpaquetes
+correspondientes (p.e. separando las vistas, controladores y modelos).
+</p>
+
+<ul>
+<li><strong>Como empleado del banco quiero obtener el porcentaje de descuento a aplicar en las compras mediante tarjeta (Problema 3).</strong>
+<ul>
+<li><em>Criterios de aceptación:</em> Una función que determina el descuento a aplicar 
+para un cliente como se indica a continuación: Los descuentos son acumulables. 
+Si el cliente acaba de abrir una cuenta de crédito obtiene el 15% de descuento en todas sus compras de hoy, 
+si es un cliente habitual con tarjeta de fidelización obtiene un 10% de descuento. 
+Si el cliente tiene un cupón de descuento obtiene el 20% de descuento 
+(no acumulable con el descuento de nuevo cliente).
+</li><li>
+<em>Notas sobre la implementación:</em> Implementad método getDescuento del modelo  (no se usa base de datos).
+</li><li>
+<em>Notas sobre pruebas unitarias:</em> Se implementa TestDescuentoFunction en paquete giis.demo.descuento.ut con JUnit 4 para cubrir todas las situaciones 
+correspondientes al diseño de las pruebas del modelo. Se implementan las mismas pruebas (1) distribuyendo los  casos de prueba
+en diferentes métodos de prueba  y(2) como pruebas parametrizadas..
+<br/>Las mismas pruebas se implementan en estilo BDD utilizando JBehave (unitarias y de interfaz de usuario)
+en descuento.ut.jbehave (historia descuento-function.story) junto con la el mapeo de  los pasos (DescuentoFunctionSteps.java) y la configuración (DescuentoStories.java). Tambien incluye pruebas sin parametrizar y parametrizadas (con ejemplos).</li><li>
+<em>Notas sobre pruebas del interfaz de usuario:</em> No aplicable.
+</li>
+</ul>
+
+<li><strong>Como empleado del banco  quiero visualizar un informe con los descuentos aplicables a los clientes (Problema 3b).</strong>
+<ul>
+<li><em>Criterios de aceptación:</em> El cálculo del descuento es como el anterior, pero se presentará un informe con el id de cliente y descuento aplicable a todos los clientes en la base de datos (el descuento es calculado al ejecutar el informe).
+</li><li>
+<em>Notas sobre la implementación:</em> En el modelo se añade el método getListaDescuentos utilizando los métodos
+executeQuery* en la clase DbUtil y un DTO con los datos de la lista de descuentos. La lógica de negocio para el cálculo del descuento se implementa en SQL.
+</li><li>
+<em>Notas sobre pruebas unitarias:</em> Se implementa TestDescuentoDatabase.testConsultaSinParametro en giis.demo.descuento.ut con JUnit 4 para cubrir todas las situaciones 
+correspondientes al diseño de las pruebas del modelo (en este caso solo hay un caso de prueba sin clases inválidad).
+<br/>Como en el anterior, 
+las mismas pruebas se implementan en estilo BDD utilizando JBehave
+en descuento.ut.jbehave (historia descuento-database.story) añadiendo con la definición de pasos (DescuentoDatabaseSteps.java).</li><li>
+<em>Notas sobre pruebas del interfaz de usuario:</em> No aplicable.
+</li>
+</ul>
+
+<li><strong>Como empleado del banco quiero filtrar la informacion del informe de descuentos por la edad del cliente (Problema 3c).</strong>
+<ul>
+<li><em>Criterios de aceptación:</em> El cálculo del descuento es como el anterior, pero con  un parámetro opcional (edad) que si está presente, oculta los resultados de aquellos con edad menor que la especificada.
+</li><li>
+<em>Notas sobre la implementación:</em> En el modelo se sobrecarga el método getListaDescuentos para admitir el parametro edad. Se crea el atributo edad en la base de datos y se adapta la SQL para usar este parámetro.
+</li><li>
+<em>Notas sobre pruebas unitarias:</em> Se añade TestDescuentoDatabase.testConsultaConParametro en giis.demo.descuento.ut con JUnit 4 para añadir la situación en la que se especifica la edad.
+<br/>Como en el anterior, 
+las mismas pruebas se implementan en estilo BDD utilizando JBehave
+en descuento.ut.jbehave (historia descuento-database.story) añadiendo al escenario anterior un paso que repersenta la consulta con un valor en la edad.</li><li>
+<em>Notas sobre pruebas del interfaz de usuario:</em> No aplicable.
+</li>
+</ul>
+<li><strong>Como empleado del banco quiero añadir un interfaz de usuari al informe de descuentos (Problema 3d).</strong>
+<ul>
+<li><em>Criterios de aceptación:</em> el informe es visualizado y el parámetro de edad indicado desde la pantalla del usuario 
+(se supone que ya está validado el formulario). Al abrir la pantalla se mostrará el informe sin aplicar ningún filtro
+</li><li>
+<em>Notas sobre la implementación:</em> Se añade una vista (DescuentoView.java) y controlador (DescuentoController.java)
+utilizando el modelo ya implementado.
+</li><li>
+<em>Notas sobre pruebas unitarias:</em> No aplicable.
+</li><li>
+<em>Notas sobre pruebas del interfaz de usuario:</em> Se implementa una prueba simple en giis.demo.descuento.it 
+automatizada con AssertJ Swing que ejecuta los cuatro pasos del caso de prueba.
+<br/>Como en los anteriores se implementa el mismo caso de prueba con estilo BDD utilizando JBehave en giis.demo.descuento.it.jbehave
+(descuento-it.story) junto con el mapeo de los pasos y la  configuración.
+</li>
+</ul>
+
+</ul>
+</body>
