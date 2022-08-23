@@ -197,7 +197,7 @@
 			<plugin>
 				<groupId>org.jbehave</groupId>
 				<artifactId>jbehave-maven-plugin</artifactId>
-				<version>4.8.3</version>
+				<version>5.0</version>
 				<executions>
 					<!-- localizacion del mapping de historias y ejecucion en ut y en it -->
 					<execution>
