@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '11'
+          java-version: '8'
           cache: 'maven'
 
       # - name: Build and test UT
@@ -42,30 +42,82 @@ jobs:
         name: Publish html test reports to an artifact
         uses: actions/upload-artifact@v3
         with:
-          name: test-report-files
+          name: test-reports-files
           path: |
             target/screenshots/
             target/site/
+      - if: always()
+        name: Publish test reports for sonarqube job
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports-for-sonar
+          path: |
+            target/surefire-reports/
+            target/failsafe-reports/
+            target/site/jacoco/jacoco.xml
 
-      # Run Sonarqube
-
+  sonarqube:
+    needs: [test]
+    #if: ${{ false }}  # disable for now
+    #Cuando viene de una PR de dependabot este job falla porque no puede leer el token de sonarqube
+    #(restriccion de seguridad de GitHub Actions). Discusion y workarounds:
+    #https://community.sonarsource.com/t/youre-not-authorized-to-run-analysis-and-github-bots/41994/4
+    #https://github.com/dependabot/dependabot-core/issues/3253#issuecomment-797125425
+    if: ${{ github.actor != 'dependabot[bot]' }}
+    runs-on: ubuntu-latest
+    steps:
+      #Configuracion inicial recomendada por sonarCloud
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 11
+          cache: 'maven'
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
         with:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      #compilar antes de restaurar reports y realizar el analisis
+      - name: Generate classes
+        run: mvn test-compile
+      - name: Restore test reports
+        uses: actions/download-artifact@v3
+        with:
+          name: test-reports-for-sonar
+          path: target
+      #suprime el envio de los reports de owasp dependency-check porque sonarcloud.io no tiene plugin para importarlos
+      #- name: Restore dependency check reports
+      #  uses: actions/download-artifact@v3
+      #  with:
+      #    name: dependency-check-reports
+      #    path: target
+
+      #El plugin de maven no lee el archivo sonar-project.properties ni .sonarcloud.properties, ejecuta el scanner de forma manual
+      #- name: SonarQube Analysis
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #  run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=my:samples-test-java -Dsonar.organization=giis -Dproject.settings=sonar-project.properties
       - name: Download sonarscanner
         run: curl --insecure -o ./sonarscanner.zip -L https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip && unzip -q sonarscanner.zip
-
       - name: SonarQube Analysis
-        if: ${{ github.actor != 'dependabot[bot]' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=my:samples-test-java -Dsonar.organization=giis
       - name: SonarQube Quality Gate check
-        if: ${{ github.actor != 'dependabot[bot]' }}
         uses: sonarsource/sonarqube-quality-gate-action@master
         timeout-minutes: 5
         env:
