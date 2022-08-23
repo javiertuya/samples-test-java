@@ -65,7 +65,6 @@ public class TestDescuentoDatabase {
 		DescuentoModel model=new DescuentoModel();
 		List<DescuentoDisplayDTO> descuentos=model.getListaDescuentos();
         assertEquals("1,15\n"
-        		+"2,20\n"
         		+"5,20\n"
         		+"6,10\n"
         		+"7,30\n", 
