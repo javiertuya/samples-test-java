@@ -1,3 +1,6 @@
+[![Build Status](https://github.com/javiertuya/samples-test-java/actions/workflows/test.yml/badge.svg)](https://github.com/javiertuya/samples-test-java/actions/workflows/test.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=my%3Asamples-test-java&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=my%3Asamples-test-java)
+
 # samples-test-java
 
 Este proyecto es utilizado a modo de ejemplo para ilustrar algunos aspectos del desarrollo y automatización de pruebas para
@@ -38,9 +41,9 @@ La estructura es la estándar de maven:
 
 - Opción 1: Apache Maven:
   - Asegurarse de que JAVA_HOME apunta a un JDK y no JRE
-  - Ejecución completa: ´mvn install´, incluye generación del Javadoc
-  - Solo pruebas unitarias: ´mvn test´, todas las pruebas: ´mvn verify´
-  - Ejecución sin tests: ´mvn install -DskipTests=true´, genera todos los jar incluyendo javadoc
+  - Ejecución completa: `mvn install`, incluye generación del Javadoc
+  - Solo pruebas unitarias: `mvn test`, todas las pruebas: `mvn verify`
+  - Ejecución sin tests: `mvn install -DskipTests=true`, genera todos los jar incluyendo javadoc
 
 - Opción 2: Eclipse con M2Eclipse instalado (algunas distribuciones como Oxigen IDE for Java EE Developers ya lo incluyen).
   Desde la raiz del proyecto:
@@ -53,10 +56,10 @@ Programa principal (aplicaciones swing): `giis.demo.util.SwingMain`
 
 ## Reports
 
-La instalacion anterior compilará, ejecutará pruebas y dispondrá de los reports en ´target/site´:
+La instalacion anterior compilará, ejecutará pruebas y dispondrá de los reports en `target/site`:
 - apidocs/index.html: javadoc del proyecto
 - surefire-report.html: report de las pruebas unitarias (ut)
 - failsafe-report.html: report de las pruebas del interfaz de usuario (it)
 - junit*: report consolidado de todas las pruebas con el formato que genera junit
 - jacoco, jacoco-ut, jacoco-it: reports de cobertura de código consolidado, y separado para ut e it
-- reports estandar de jbehave en ´target/jbehave´
+- reports estandar de jbehave en `target/jbehave`
