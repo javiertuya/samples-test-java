@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '8'
+          java-version: '11'
           cache: 'maven'
 
       # - name: Build and test UT
@@ -48,7 +48,7 @@ jobs:
             target/site/
 
       # Run Sonarqube
-      
+
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
         with:
@@ -56,14 +56,14 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
       - name: Download sonarscanner
-        run: curl --insecure -o ./sonarscanner.zip -L https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip && unzip -q sonarscanner.zip
+        run: curl --insecure -o ./sonarscanner.zip -L https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip && unzip -q sonarscanner.zip
 
       - name: SonarQube Analysis
         if: ${{ github.actor != 'dependabot[bot]' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=my:samples-test-java -Dsonar.organization=giis
+        run: sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=my:samples-test-java -Dsonar.organization=giis
       - name: SonarQube Quality Gate check
         if: ${{ github.actor != 'dependabot[bot]' }}
         uses: sonarsource/sonarqube-quality-gate-action@master
