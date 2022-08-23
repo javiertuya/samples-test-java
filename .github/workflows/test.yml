@@ -8,6 +8,7 @@ on:
   pull_request:
     branches:
       - 'main'
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -20,12 +21,14 @@ jobs:
           distribution: 'temurin'
           java-version: '8'
           cache: 'maven'
-      - name: Start Xvfb
-        if: matrix.os == 'ubuntu-latest'
-        run: Xvfb $DISPLAY &
 
-      - name: Build and test
-        run: mvn install -Dmaven.test.failure.ignore=true -U --no-transfer-progress
+      # - name: Build and test UT
+      #   run: mvn test -Dmaven.test.failure.ignore=true -U --no-transfer-progress
+      # Aunque solo los test it que ejecutan swing requieren un display Xvfb, ejecuto todo bajo esta accion
+      - name: Buils and run all tests
+        uses: GabrielBB/xvfb-action@v1
+        with:
+          run: mvn install -Dmaven.test.failure.ignore=true -U --no-transfer-progress
 
       - name: Publish surefire test report
         if: always()
@@ -40,8 +43,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-report-files
-          #working-directory does not work here
           path: |
             target/*.png
-            java/target/site/
+            target/site/
   
