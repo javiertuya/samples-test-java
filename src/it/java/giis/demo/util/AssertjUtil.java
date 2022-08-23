@@ -66,16 +66,15 @@ public class AssertjUtil {
 	 * @param name nombre que se dara a la imagen (le anyade un timestamp para diferenciar imagenes guardadas en la misma sesion)
 	 */
 	public static void takeScreenshot(FrameFixture window, String name) {
-		delay(250);
+		delay(100);
+		String imageFolderPath = "target/screenshots";
 		ScreenshotTaker screenshotTaker = new ScreenshotTaker();
-		String imageFolderPath = "target";
 		String timestamp = String.valueOf(System.currentTimeMillis()); //diferencia archivos en varias ejecuciones
 		String fileName=imageFolderPath + "/" + timestamp + "-" + name + "-frame.png";
-		new File(imageFolderPath).mkdir(); //asegura que existe la carpeta
+		new File(imageFolderPath).mkdir(); //asegura que existe la carpeta de screenshots
 		screenshotTaker.saveComponentAsPng(window.target(), fileName);
-		//el siguiente mostrara el escritorio
-		//screenshotTaker.saveDesktopAsPng(imageFolderPath + timestamp + "-" + name + "-desktop.png");
-		delay(250);
+		//Si se usa saveDesktopAsPng mostrara el escritorio completo
+		delay(100);
 	}
 	/**
 	 * Establece un tiempo de retraso para permitir visualizar el ui y dar tiempo a algunos eventos

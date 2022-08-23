@@ -44,6 +44,6 @@ jobs:
         with:
           name: test-report-files
           path: |
-            target/*.png
+            target/screenshots/
             target/site/
   

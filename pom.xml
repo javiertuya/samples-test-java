@@ -124,7 +124,7 @@
 
 	<build>
 		<plugins>
-			<!-- Ejecucion pruebas ut (surefire) -->
+			<!-- Ejecucion pruebas UT (surefire) -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -139,8 +139,8 @@
 				</configuration>
 			</plugin>
 			<!-- BEGINIT -->
-			<!-- pruebas it, definicion de localizacion pruebas it segun convenio maven:
-			https://dzone.com/articles/integration-tests-with-maven -->
+			<!-- Definicion de localizacion pruebas IT segun convenio maven:
+			     https://dzone.com/articles/integration-tests-with-maven -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
@@ -278,7 +278,8 @@
 			</plugin>
 			<!-- ENDDESCUENTO -->
 
-			<!-- jacoco plugin for code coverage, Ver: https://www.petrikainulainen.net/programming/maven/creating-code-coverage-reports-for-unit-and-integration-tests-with-the-jacoco-maven-plugin/ -->
+			<!-- jacoco plugin for code coverage, 
+			     Ver: https://www.petrikainulainen.net/programming/maven/creating-code-coverage-reports-for-unit-and-integration-tests-with-the-jacoco-maven-plugin/ -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -367,7 +368,7 @@
 				</executions>
 			</plugin>
 
-			<!-- reports test (surefire) -->
+			<!-- reports test estandar de maven -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
@@ -381,7 +382,7 @@
 						</goals>
 					</execution>
 					<!-- BEGINDESCUENTO -->
-					<!-- reports it (failsafe) -->
+					<!-- reports IT (failsafe) -->
 					<execution>
 						<id>it-reports</id>
 						<phase>post-integration-test</phase>
@@ -397,28 +398,12 @@
 				</executions>
 			</plugin>
 
-			<!-- Otras tareas realizadas con ant -->
+			<!-- Reports de test en formato html estilo junit, generados con ant -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<version>3.1.0</version>
 				<executions>
-					<!-- creacion de carpeta para screenshots -->
-					<execution>
-						<id>screenshots</id>
-						<phase>pre-integration-test</phase>
-						<configuration>
-							<target>
-								<delete dir="target/screenshots" />
-								<mkdir dir="target/screenshots" />
-							</target>
-						</configuration>
-						<goals>
-							<goal>run</goal>
-						</goals>
-					</execution>
-					<!-- Reports de test (ut+it) estilo junit (al final del todo en install, 
-						cuando ya se han ejecutado todas las pruebas) -->
 					<execution>
 						<id>junit-reports-ut</id>
 						<phase>test</phase>
@@ -438,7 +423,6 @@
 						</goals>
 					</execution>
 					<!-- BEGINDESCUENTO -->
-					<!-- genera de nuevo en post-integration-test para incluir los reports de it (failsafe) -->
 					<execution>
 						<id>junit-reports-it</id>
 						<phase>post-integration-test</phase>
