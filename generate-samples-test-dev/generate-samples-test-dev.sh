@@ -1,31 +1,41 @@
 #!/bin/bash
+# Realiza una copia parcial del proyecto samples-test-java para producir 
+# una version simplificada (samples-test-dev) para uso en las practicas de IS
+# El proyecto samples-test-dev debe estar en al mismo nivel que samples-test-java
+
+# se ejecuta desde la carpeta donde reside este script
+# usara otro script (file-filter.sh) para eliminar partes del codigo marcadas
+SCRIPT=$(readlink -f "$0")
+SCRIPTPATH=$(dirname "$SCRIPT")
+echo $SCRIPTPATH
+cd $SCRIPTPATH
+
 SRC=".."
 DEST="../../samples-test-dev"
+
 echo "copy src to dest"
-cp -vR $SRC/src $DEST/src/
+cp -vR $SRC/src $DEST/
 cp -v $SRC/pom.xml $DEST/pom.xml
-cp -v $SRC/.classpath $DEST/
+#cp -v $SRC/.classpath $DEST/
 cp -v $SRC/.project $DEST/
 cp -v $SRC/.gitignore $DEST/
 
-echo "delete descuento source folders"
-rm -vR $DEST/src/main/java/giis/demo/descuento
-rm -vR $DEST/src/test/java/giis/demo/descuento
-rm -vR $DEST/src/it/java/giis/demo/descuento
-rm -vR $DEST/src/it/java/giis/demo
+echo "delete descuento & it source folders"
+rm -R $DEST/src/main/java/giis/demo/descuento
+rm -R $DEST/src/test/java/giis/demo/descuento
+rm -R $DEST/src/test/resources/test-parameters.csv
+rm -R $DEST/src/it
 
-echo "rename project"
+echo "touch additional files"
 #sed -i "s/samples-test-java/samples-test-dev/g" $DEST/index.html
+sed -i "s/samples-test-java/samples-test-dev/g" $DEST/src/main/java/overview.html
 sed -i "s/samples-test-java/samples-test-dev/g" $DEST/pom.xml
 sed -i "s/samples-test-java/samples-test-dev/g" $DEST/.project
 #sed -i "s/samples-test-java/samples-test-dev/g" $DEST/sonar-project.properties
 
-echo "filter marks"
+echo "filter files"
 chmod u+x ./app-filter.sh
-./file-filter.sh true  $DEST/pom.xml "BEGINDESCUENTO" "ENDDESCUENTO"
-./file-filter.sh true  $DEST/src/main/resources/data.sql "BEGINDESCUENTO" "ENDDESCUENTO"
-./file-filter.sh true  $DEST/src/main/resources/schema.sql "BEGINDESCUENTO" "ENDDESCUENTO"
-./file-filter.sh true  $DEST/src/main/java/giis/demo/util/SwingMain.java "BEGINDESCUENTO" "ENDDESCUENTO"
-./file-filter.sh true  $DEST/src/main/java/overview.html "BEGINDESCUENTO" "ENDDESCUENTO"
-./file-filter.sh false $DEST/src/main/java/overview.html "BEGINJDBC" "ENDJDBC"
-./file-filter.sh true  $DEST/src/main/java/overview.html "BEGINIT" "ENDIT"
+./file-filter.sh true  $DEST/pom.xml "BEGINREDUCE" "ENDREDUCE"
+./file-filter.sh true  $DEST/src/main/resources/data.sql "BEGINREDUCE" "ENDREDUCE"
+./file-filter.sh true  $DEST/src/main/resources/schema.sql "BEGINREDUCE" "ENDREDUCE"
+./file-filter.sh true  $DEST/src/main/java/giis/demo/util/SwingMain.java "BEGINREDUCE" "ENDREDUCE"

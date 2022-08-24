@@ -7,9 +7,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import giis.demo.tkrun.*;
-//BEGINDESCUENTO
+//BEGINREDUCE
 import giis.demo.descuento.*;
-//ENDDESCUENTO
+//ENDREDUCE
 
 /**
  * Punto de entrada principal que incluye botones para la ejecucion de las pantallas 
@@ -64,7 +64,7 @@ public class SwingMain {
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 		frame.getContentPane().add(btnEjecutarTkrun);
 		
-//BEGINDESCUENTO
+//BEGINREDUCE
 		JButton btnEjecutarDescuento = new JButton("Ejecutar giis.demo.descuento");
 		btnEjecutarDescuento.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
 			public void actionPerformed(ActionEvent e) {
@@ -73,7 +73,7 @@ public class SwingMain {
 			}
 		});
 		frame.getContentPane().add(btnEjecutarDescuento);
-//ENDDESCUENTO
+//ENDREDUCE
 			
 		JButton btnInicializarBaseDeDatos = new JButton("Inicializar Base de Datos en Blanco");
 		btnInicializarBaseDeDatos.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado

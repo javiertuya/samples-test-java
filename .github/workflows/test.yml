@@ -25,10 +25,10 @@ jobs:
       # - name: Build and test UT
       #   run: mvn test -Dmaven.test.failure.ignore=true -U --no-transfer-progress
       # Aunque solo los test it que ejecutan swing requieren un display Xvfb, ejecuto todo bajo esta accion
-      - name: Buils and run all tests
+      - name: Build and run all tests
         uses: GabrielBB/xvfb-action@v1
         with:
-          run: mvn install -Dmaven.test.failure.ignore=true -U --no-transfer-progress
+          run: mvn verify -Dmaven.test.failure.ignore=true -U --no-transfer-progress
 
       - name: Publish surefire test report
         if: always()
@@ -97,12 +97,6 @@ jobs:
         with:
           name: test-reports-for-sonar
           path: target
-      #suprime el envio de los reports de owasp dependency-check porque sonarcloud.io no tiene plugin para importarlos
-      #- name: Restore dependency check reports
-      #  uses: actions/download-artifact@v3
-      #  with:
-      #    name: dependency-check-reports
-      #    path: target
 
       #El plugin de maven no lee el archivo sonar-project.properties ni .sonarcloud.properties, ejecuta el scanner de forma manual
       #- name: SonarQube Analysis
