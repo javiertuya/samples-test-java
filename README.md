@@ -1,12 +1,14 @@
 [![Build Status](https://github.com/javiertuya/samples-test-java/actions/workflows/test.yml/badge.svg)](https://github.com/javiertuya/samples-test-java/actions/workflows/test.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=my%3Asamples-test-java&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=my%3Asamples-test-java)
+[![Javadoc](https://img.shields.io/badge/%20-javadoc-blue)](https://javiertuya.github.io/samples-test-java/)
 
 # samples-test-java
 
 Este proyecto es utilizado a modo de ejemplo para ilustrar algunos aspectos del desarrollo y automatización de pruebas para
 las asignaturas relacionadas con ingenieria del software, sistemas de información y pruebas de software.
 
-[Descargar la última versión](https://github.com/javiertuya/samples-test-java/releases)
+[Descargar la última versión](https://github.com/javiertuya/samples-test-java/releases) - 
+[Ver más detalles en el javadoc](https://javiertuya.github.io/samples-test-java/)
 
 ## Contenido
 
