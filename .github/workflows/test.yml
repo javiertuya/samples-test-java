@@ -12,6 +12,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 6 #run tests unser xvfb hangs sometimes, kills job if this happens
     steps:
       - name: Checkout GitHub repo
         uses: actions/checkout@v3
