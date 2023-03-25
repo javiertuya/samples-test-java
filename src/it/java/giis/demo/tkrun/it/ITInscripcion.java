@@ -1,16 +1,21 @@
 package giis.demo.tkrun.it;
-import org.assertj.swing.edt.FailOnThreadViolationRepaintManager;
 
+import static org.assertj.swing.core.matcher.JButtonMatcher.withText;
+import static org.junit.Assert.assertEquals;
+
+import org.assertj.swing.data.TableCell ;
+import org.assertj.swing.edt.FailOnThreadViolationRepaintManager;
 import org.assertj.swing.finder.JOptionPaneFinder;
 import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JOptionPaneFixture;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
-import giis.demo.util.*;
-
-import static org.junit.Assert.assertEquals;
-import static org.assertj.swing.core.matcher.JButtonMatcher.withText;
-import org.assertj.swing.data.TableCell ;
+import giis.demo.util.AssertjUtil;
+import giis.demo.util.Database;
+import giis.demo.util.Util;
 
 /**
  * Pruebas de la interaccion del usuario con la aplicacion swing del ejemplo de Inscripciones en carreras populares

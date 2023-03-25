@@ -165,7 +165,6 @@
 							<goal>integration-test</goal>
 						</goals>
 						<configuration>
-							<testFailureIgnore>true</testFailureIgnore>
 							<!-- Sets the VM argument line used when integration tests are run. -->
 							<argLine>${failsafeArgLine}</argLine>
 							<!--para evitar fallos con openjdk en linux-->
@@ -243,7 +242,6 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<scope>test</scope>
 							<outputDirectory>${basedir}/target/test-classes</outputDirectory>
 							<resources>
 								<resource>
@@ -455,16 +453,18 @@
 				<configuration>
 					<overview>${basedir}/src/main/java/overview.html</overview>
 					<sourcepath>${basedir}/src/main/java;${basedir}/src/test/java;${basedir}/src/it/java</sourcepath>
-					<outputDirectory>${project.reporting.outputDirectory}/apidocs</outputDirectory>
+					<destDir>apidocs</destDir>
 					<quiet>true</quiet>
 					<doclint>none</doclint>
 				</configuration>
 				<executions>
 					<execution>
-						<id>attach-javadocs</id>
+						<id>generate-all-javadocs</id>
 						<phase>install</phase>
 						<goals>
-							<goal>jar</goal>
+							<!--normalmente este goal seria jar, no interesa el jar, solo el javadoc
+							y evita warnings/errores porque se estan generando javadocs de los tests-->
+							<goal>test-javadoc</goal>
 						</goals>
 					</execution>
 				</executions>

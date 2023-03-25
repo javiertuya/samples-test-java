@@ -1,10 +1,17 @@
 package giis.demo.descuento.ut;
-import org.junit.*;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
-import giis.demo.util.*;
-import giis.demo.descuento.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import giis.demo.descuento.DescuentoDisplayDTO;
+import giis.demo.descuento.DescuentoModel;
+import giis.demo.util.Database;
+import giis.demo.util.Util;
 
 /**
  * Pruebas del ejemplo de informe de descuentos de clientes leidos desde la base de datos (Problemas 3b y 3c).

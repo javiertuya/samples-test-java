@@ -1,10 +1,14 @@
 package giis.demo.descuento.ut.jbehave;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import giis.demo.descuento.*;
+
+import giis.demo.descuento.DescuentoModel;
+
 /**
  * Define el mapping de los pasos para descuento-function.story
  */

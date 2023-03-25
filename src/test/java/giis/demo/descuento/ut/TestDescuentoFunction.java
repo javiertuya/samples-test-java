@@ -1,12 +1,14 @@
 package giis.demo.descuento.ut;
-import org.junit.*;
-import static org.junit.Assert.fail;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.hamcrest.CoreMatchers.*;
 
-import giis.demo.descuento.*;
-import giis.demo.util.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+import org.junit.Test;
+
+import giis.demo.descuento.DescuentoModel;
+import giis.demo.util.ApplicationException;
 
 /**
  * Pruebas del ejemplo de descuentos de clientes (Problema 3a).

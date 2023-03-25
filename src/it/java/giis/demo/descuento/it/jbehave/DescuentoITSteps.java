@@ -1,5 +1,7 @@
 package giis.demo.descuento.it.jbehave;
+
 import static org.junit.Assert.assertEquals;
+
 import java.util.Map;
 
 import org.assertj.swing.fixture.FrameFixture;
@@ -10,7 +12,9 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.model.ExamplesTable;
 
-import giis.demo.util.*;
+import giis.demo.util.AssertjUtil;
+import giis.demo.util.Database;
+import giis.demo.util.Util;
 
 /**
  * Define el mapping de los pasos para descuento-function.story

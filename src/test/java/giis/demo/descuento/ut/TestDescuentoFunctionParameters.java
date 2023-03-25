@@ -1,12 +1,13 @@
 package giis.demo.descuento.ut;
-import org.junit.*;
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
-import junitparams.Parameters;
+
+import giis.demo.descuento.DescuentoModel;
 import junitparams.FileParameters;
 import junitparams.JUnitParamsRunner;
-import giis.demo.descuento.*;
+import junitparams.Parameters;
 
 /**
  * Pruebas del ejemplo de descuentos de clientes (Problema 3a) usando JUnitParams para parametrizar las pruebas.
@@ -15,6 +16,7 @@ import giis.demo.descuento.*;
  * Parametrizando estos valores se simplifica la prueba,
  * evitando incluir varios casos de prueba en un mismo metodo 
  * y se separan los datos de prueba del codigo a probar.
+ * 
  * JUnit4 permite parametrizar las pruebas (https://github.com/junit-team/junit4/wiki/parameterized-tests),
  * pero lo realiza a nivel de todos los tests de una clase.
  * Existen otros componentes que simplifican y flexibilizan las pruebas como:

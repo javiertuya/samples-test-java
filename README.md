@@ -59,7 +59,7 @@ Programa principal (aplicaciones swing): `giis.demo.util.SwingMain`
 ## Reports
 
 La instalacion anterior compilará, ejecutará pruebas y dispondrá de los reports en carpetas dentro de `target`:
-- `apidocs/index.html`: javadoc del proyecto
+- `site/testapidocs/index.html`: javadoc del proyecto
 - `site/surefire-report.html`: report de las pruebas unitarias (ut)
 - `site/failsafe-report.html`: report de las pruebas del interfaz de usuario (it)
 - `site/junit*`: report consolidado de todas las pruebas con el formato que genera junit

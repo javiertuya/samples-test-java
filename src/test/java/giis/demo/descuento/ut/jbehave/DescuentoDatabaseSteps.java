@@ -1,5 +1,7 @@
 package giis.demo.descuento.ut.jbehave;
+
 import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 import java.util.Map;
 
@@ -8,8 +10,11 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.model.ExamplesTable;
-import giis.demo.descuento.*;
-import giis.demo.util.*;
+
+import giis.demo.descuento.DescuentoDisplayDTO;
+import giis.demo.descuento.DescuentoModel;
+import giis.demo.util.Database;
+import giis.demo.util.Util;
 
 /**
  * Define el mapping de los pasos para descuento-database.story.

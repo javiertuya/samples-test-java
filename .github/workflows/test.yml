@@ -23,7 +23,7 @@ jobs:
           java-version: '8'
           cache: 'maven'
 
-      # - name: Build and test UT
+      # - name: Build and test UT & IT
       #   run: mvn test -Dmaven.test.failure.ignore=true -U --no-transfer-progress
       # Aunque solo los test it que ejecutan swing requieren un display Xvfb, ejecuto todo bajo esta accion
       - name: Build and run all tests

@@ -10,8 +10,6 @@ import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JButtonFixture;
 import org.assertj.swing.image.ScreenshotTaker;
 
-import giis.demo.util.SwingMain;
-
 /**
  * Utilidades varias para uso en los tests de swing con AssertJ Swing
  */
