@@ -12,7 +12,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 6 #run tests unser xvfb hangs sometimes, kills job if this happens
+    timeout-minutes: 5 #run tests under xvfb hangs sometimes, kills job if this happens
     steps:
       - name: Checkout GitHub repo
         uses: actions/checkout@v3
@@ -27,7 +27,7 @@ jobs:
       #   run: mvn test -Dmaven.test.failure.ignore=true -U --no-transfer-progress
       # Aunque solo los test it que ejecutan swing requieren un display Xvfb, ejecuto todo bajo esta accion
       - name: Build and run all tests
-        uses: GabrielBB/xvfb-action@v1
+        uses: coactions/setup-xvfb@v1
         with:
           run: mvn verify -Dmaven.test.failure.ignore=true -U --no-transfer-progress
 
