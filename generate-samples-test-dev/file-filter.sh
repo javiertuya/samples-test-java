@@ -35,4 +35,7 @@ do
 done < $filename
 #cat app-filter.tmp
 cp app-filter.tmp $filename
+if [[ "$OSTYPE" == "msys" ]]; then # preserve CRLF when running from vs studio terminal in windows
+  unix2dos $filename
+fi
 rm app-filter.tmp

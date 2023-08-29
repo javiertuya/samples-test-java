@@ -27,14 +27,17 @@ rm -R $DEST/src/test/resources/test-parameters.csv
 rm -R $DEST/src/it
 
 echo "touch additional files"
-#sed -i "s/samples-test-java/samples-test-dev/g" $DEST/index.html
 sed -i "s/samples-test-java/samples-test-dev/g" $DEST/src/main/java/overview.html
 sed -i "s/samples-test-java/samples-test-dev/g" $DEST/pom.xml
 sed -i "s/samples-test-java/samples-test-dev/g" $DEST/.project
-#sed -i "s/samples-test-java/samples-test-dev/g" $DEST/sonar-project.properties
+if [[ "$OSTYPE" == "msys" ]]; then # preserve CRLF when running from vs studio terminal in windows
+  unix2dos $DEST/src/main/java/overview.html
+  unix2dos $DEST/pom.xml
+  unix2dos $DEST/.project
+fi
 
 echo "filter files"
-chmod u+x ./app-filter.sh
+chmod u+x ./file-filter.sh
 ./file-filter.sh true  $DEST/pom.xml "BEGINREDUCE" "ENDREDUCE"
 ./file-filter.sh true  $DEST/src/main/resources/data.sql "BEGINREDUCE" "ENDREDUCE"
 ./file-filter.sh true  $DEST/src/main/resources/schema.sql "BEGINREDUCE" "ENDREDUCE"
