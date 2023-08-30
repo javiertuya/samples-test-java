@@ -41,18 +41,18 @@ La estructura es la estándar de maven:
 - [Descargar la última versión](https://github.com/javiertuya/samples-test-java/releases) 
   y disponer al menos de Java 8 JDK
 
-- Opción 1: Apache Maven:
+- Desde línea de comandos con [Apache Maven](https://maven.apache.org/download.cgi):
   - Asegurarse de que JAVA_HOME apunta a un JDK y no JRE
   - Ejecución completa: `mvn install`, incluye generación del Javadoc
   - Solo pruebas unitarias: `mvn test`, todas las pruebas: `mvn verify`
   - Ejecución sin tests: `mvn install -DskipTests=true`, genera todos los jar incluyendo javadoc
 
-- Opción 2: Eclipse con M2Eclipse instalado (algunas distribuciones como Oxigen IDE for Java EE Developers ya lo incluyen).
+- Desde Eclipse con M2Eclipse instalado (las distribuciones recientes ya lo incluyen).
   Desde la raiz del proyecto:
   - Asegurarse de que esta configurado JDK: Desde build path, editar JRE System Library y en Environment
 	comprobar que JavaSE-1.8 apunta a un JDK en vez de un JRE
-  - *Maven->Update Project*
-  - *Run As->Maven install*
+  - *Maven->Update Project*: Actualiza todas las dependencias y permite usar el proyecto como si hubiera sido creado desde el propio Eclipse
+  - *Run As->Maven install*: Ejecuta este (o otros) comandos maven desde Eclipse
 
 Programa principal (aplicaciones swing): `giis.demo.util.SwingMain`
 
