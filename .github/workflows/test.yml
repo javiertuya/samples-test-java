@@ -15,7 +15,7 @@ jobs:
     timeout-minutes: 5 #run tests under xvfb hangs sometimes, kills job if this happens
     steps:
       - name: Checkout GitHub repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Select Java Version
         uses: actions/setup-java@v3
         with:
