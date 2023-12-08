@@ -6,13 +6,11 @@ updates:
       - dependency-name: "org.jbehave:jbehave-core"
         update-types: ["version-update:semver-major"]
     schedule:
-      interval: weekly
-      day: friday
+      interval: monthly
     open-pull-requests-limit: 20
 
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: weekly
-      day: friday
+      interval: monthly
     open-pull-requests-limit: 20
