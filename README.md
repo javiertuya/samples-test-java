@@ -7,6 +7,10 @@
 Este proyecto es utilizado a modo de ejemplo para ilustrar algunos aspectos del desarrollo y automatización de pruebas para
 las asignaturas relacionadas con ingenieria del software, sistemas de información y pruebas de software.
 
+Existe una variante simplificada de este proyecto para usar como plantilla en las prácticas de estas asignaturas:
+https://github.com/javiertuya/samples-test-dev
+
+
 [Descargar la última versión](https://github.com/javiertuya/samples-test-java/releases) - 
 [Ver más detalles en el javadoc](https://javiertuya.github.io/samples-test-java/)
 
