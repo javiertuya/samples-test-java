@@ -453,11 +453,13 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.10.0</version>
+				<version>3.8.0</version>
 				<configuration>
 					<overview>${basedir}/src/main/java/overview.html</overview>
 					<sourcepath>${basedir}/src/main/java;${basedir}/src/test/java;${basedir}/src/it/java</sourcepath>
-					<destDir>apidocs</destDir>
+					<!-- Desde v3.10.0, destDir ha sido eliminada, la doc indica que ahora es reportOutputDirectory
+					Pero esto tampoco funciona con v3.10, bajo la version a 3.8 cambiando destDir -->
+					<reportOutputDirectory>${project.build.directory}/site/testapidocs</reportOutputDirectory>
 					<quiet>true</quiet>
 					<doclint>none</doclint>
 				</configuration>
