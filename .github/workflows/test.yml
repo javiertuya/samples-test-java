@@ -33,7 +33,7 @@ jobs:
 
       - name: Publish surefire test report
         if: always()
-        uses: mikepenz/action-junit-report@v5.1.0
+        uses: mikepenz/action-junit-report@v5.2.0
         with:
           check_name: test-report
           report_paths: 'target/*-reports/TEST-*.xml'
@@ -67,7 +67,7 @@ jobs:
     if: ${{ github.actor != 'dependabot[bot]' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: javiertuya/sonarqube-action@v1.4.0
+      - uses: javiertuya/sonarqube-action@v1.4.1
         with: 
           github-token: ${{ secrets.GITHUB_TOKEN }}
           sonar-token: ${{ secrets.SONAR_TOKEN }}
