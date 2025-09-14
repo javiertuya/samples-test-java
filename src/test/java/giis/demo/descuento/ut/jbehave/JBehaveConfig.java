@@ -23,50 +23,51 @@ import org.jbehave.core.reporters.SurefireReporter;
 public class JBehaveConfig {
 	private boolean unitTesting;
 	private Class<?> embeddableClass;
+
 	public JBehaveConfig(Class<?> thisClass, boolean isUnitTesting) {
-		embeddableClass=thisClass;
-		unitTesting=isUnitTesting;
+		embeddableClass = thisClass;
+		unitTesting = isUnitTesting;
 	}
+
 	/**
 	 * Configuracion general por defecto, anyadiendo reports de surefire
 	 */
 	public Configuration getConfiguration() {
-		//Define las opciones para incluir los resultados en los reports de surefire o failsafe
-		Locale.setDefault(Locale.UK); //si no se pone causa excepcion con los valores decimales en los reports
-		SurefireReporter.Options opt=new SurefireReporter.Options();
+		// Define las opciones para incluir los resultados en los reports de surefire o failsafe
+		Locale.setDefault(Locale.UK); // si no se pone causa excepcion con los valores decimales en los reports
+		SurefireReporter.Options opt = new SurefireReporter.Options();
 		if (unitTesting) {
-			new File("target/surefire-reports/").mkdir(); //asegura que existe la carpeta si se ejecuta desde eclipse
-			opt.useReportName("../../surefire-reports/TEST-jbehave-ut");//Jbehave hace la ruta relativa a target/jbehave/view
+			new File("target/surefire-reports/").mkdir(); // asegura que existe la carpeta si se ejecuta desde eclipse
+			opt.useReportName("../../surefire-reports/TEST-jbehave-ut");// Jbehave hace la ruta relativa a
+																		// target/jbehave/view
 		} else {
-			new File("target/failsafe-reports/").mkdir(); //asegura que existe la carpeta si se ejecuta desde eclipse
+			new File("target/failsafe-reports/").mkdir(); // asegura que existe la carpeta si se ejecuta desde eclipse
 			opt.useReportName("../../failsafe-reports/TEST-jbehave-it");
 		}
-		SurefireReporter surefireReporter = new SurefireReporter(embeddableClass,opt);
-		//devuelve la configuracion
-		return new MostUsefulConfiguration()
-				.useStoryLoader(new LoadFromClasspath(embeddableClass))
+		SurefireReporter surefireReporter = new SurefireReporter(embeddableClass, opt);
+		// devuelve la configuracion
+		return new MostUsefulConfiguration().useStoryLoader(new LoadFromClasspath(embeddableClass))
 				.useStoryReporterBuilder(new StoryReporterBuilder()
 						.withCodeLocation(CodeLocations.codeLocationFromClass(embeddableClass))
-						.withSurefireReporter(surefireReporter)
-						.withDefaultFormats()
-						.withFormats(CONSOLE, HTML)
-						.withFailureTrace(true)
-						.withFailureTraceCompression(true));
+						.withSurefireReporter(surefireReporter).withDefaultFormats().withFormats(CONSOLE, HTML)
+						.withFailureTrace(true).withFailureTraceCompression(true));
 	}
+
 	/**
-	 * Establece los parametros que irian el plugin jbehave-maven-plugin
-	 * (permite continuar ejecutando historias cuando alguna falla)
+	 * Establece los parametros que irian el plugin jbehave-maven-plugin (permite continuar ejecutando historias cuando
+	 * alguna falla)
 	 */
 	public EmbedderControls getEmbedderControls() {
-		//los parametros que irian el plugin jbehave-maven-plugin
+		// los parametros que irian el plugin jbehave-maven-plugin
 		return new EmbedderControls().doIgnoreFailureInStories(true).doIgnoreFailureInView(false);
 	}
+
 	/**
 	 * Asocia (localiza) los archivos con escenarios (*.story) que se encuentran en la misma carpeta que esta clase
 	 * (antes de ejecutar los tests se copian desde la carpeta de fuentes a la carpeta de clases)
 	 */
 	public List<String> getStoryPaths() {
-		//las historias se buscan en los paquetes ut o it
+		// las historias se buscan en los paquetes ut o it
 		String paths = unitTesting ? "**/ut/**/*.story" : "**/it/**/*.story";
 		return new StoryFinder().findPaths(codeLocationFromClass(embeddableClass), paths, "");
 	}

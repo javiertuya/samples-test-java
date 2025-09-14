@@ -13,10 +13,10 @@ public class DescuentoDisplayDTO {
 	private int descuento;
 	
 	public DescuentoDisplayDTO() {
-		//estos objetos solo se instancian utilizando consultas a la base de datos
+		// estos objetos solo se instancian utilizando consultas a la base de datos
 	}
 	public int getId() { return this.id; }
 	public int getDescuento() { return this.descuento; }
-	public void setId(int value) { this.id=value; }
-	public void setDescuento(int value) { this.descuento=value; }
+	public void setId(int value) { this.id = value; }
+	public void setDescuento(int value) { this.descuento = value; }
 }

@@ -26,18 +26,19 @@ public class DescuentoModel {
 	 * @return el porcentaje de descuento aplicable segun los parametros anteriores
 	 */
 	public int getDescuento(boolean nuevo, boolean cupon, boolean tarjeta) {
-		int descuento=0;
+		int descuento = 0;
 		if (nuevo) {
-			descuento+=15; //por ser nuevo cliente
-			if (cupon) 
-				descuento=20; //por tarjeta se anyadiria 10, pero no es acumulable se aplica el porcentaje del cupon de descuento
+			descuento += 15; // por ser nuevo cliente
+			if (cupon)
+				descuento = 20; // por tarjeta se anyadiria 10, pero no es acumulable se aplica el porcentaje
+								// del cupon de descuento
 			if (tarjeta)
 				throw new ApplicationException("Un cliente nuevo no puede disponer de tarjeta de fidelizacion");
 		} else {
 			if (cupon)
-				descuento+=20;
+				descuento += 20;
 			if (tarjeta)
-				descuento+=10;
+				descuento += 10;
 		}
 		return descuento;
 	}
@@ -50,18 +51,19 @@ public class DescuentoModel {
 	 * @return lista de objetos con el id de usuario y descuento aplicable
 	 */
 	public List<DescuentoDisplayDTO> getListaDescuentos(int edad) {
-		//La misma logica que en la funcion anterior pero implementada completamente en SQL
-		String sql="Select id, Descuento FROM (Select id, edad, "
-				+" CASE WHEN nuevo='S' and cupon='N' and tarjeta='N' then 15 "
-				+"   WHEN nuevo='S' and cupon='S' and tarjeta='N' then 20 "
-				+"   WHEN nuevo='N' and cupon='S' and tarjeta='N' then 20 "
-				+"   WHEN nuevo='N' and cupon='N' and tarjeta='S' then 10 "
-				+"   WHEN nuevo='N' and cupon='S' and tarjeta='S' then 30 "
-				+"   ELSE 0 END As descuento  From Clientes) As descuentoClientes"
-				+" WHERE descuento > 0 AND edad>=?"
-				+" ORDER BY id";
+		// La misma logica que en la funcion anterior pero implementada completamente en SQL
+		String sql = "Select id, Descuento FROM (Select id, edad, "
+				+ " CASE WHEN nuevo='S' and cupon='N' and tarjeta='N' then 15 "
+				+ "   WHEN nuevo='S' and cupon='S' and tarjeta='N' then 20 "
+				+ "   WHEN nuevo='N' and cupon='S' and tarjeta='N' then 20 "
+				+ "   WHEN nuevo='N' and cupon='N' and tarjeta='S' then 10 "
+				+ "   WHEN nuevo='N' and cupon='S' and tarjeta='S' then 30 "
+				+ "   ELSE 0 END As descuento  From Clientes) As descuentoClientes" 
+				+ " WHERE descuento > 0 AND edad>=?"
+				+ " ORDER BY id";
 		return db.executeQueryPojo(DescuentoDisplayDTO.class, sql, edad);
 	}
+
 	/**
 	 * Obtiene una fila por cada usuario de la base de datos junto con el descuento aplicable
 	 * (se omiten las conbinaciones invalidas) sin aplicar ningun filtro

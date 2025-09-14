@@ -30,9 +30,9 @@ public class DescuentoController {
 	}
 	
 	public void initView() {
-		//la lista de descuentos se mostrara de acuerdo con los valores iniciales de la edad en el interfaz
+		// la lista de descuentos se mostrara de acuerdo con los valores iniciales de la edad en el interfaz
 		this.getListaDescuentos();
-		//Abre la ventana (sustituye al main generado por WindowBuilder)
+		// Abre la ventana (sustituye al main generado por WindowBuilder)
 		view.getFrame().setVisible(true); 
 	}
 	/**
@@ -40,13 +40,13 @@ public class DescuentoController {
 	 * y usar metodo de SwingUtil para crear un tablemodel que se asigna finalmente a la tabla.
 	 */
 	public void getListaDescuentos() {
-		String anyosTxt=view.getTxtAnyos().trim();
+		String anyosTxt = view.getTxtAnyos().trim();
 		List<DescuentoDisplayDTO> descuento;
-		if ("".equals(anyosTxt)) //diferente metodo si se indican o no los anyos
-			descuento=model.getListaDescuentos();
+		if ("".equals(anyosTxt)) // diferente metodo si se indican o no los anyos
+			descuento = model.getListaDescuentos();
 		else
-			descuento=model.getListaDescuentos(Integer.parseInt(anyosTxt));
-		TableModel tmodel=SwingUtil.getTableModelFromPojos(descuento, new String[] {"id", "descuento"});
+			descuento = model.getListaDescuentos(Integer.parseInt(anyosTxt));
+		TableModel tmodel = SwingUtil.getTableModelFromPojos(descuento, new String[] { "id", "descuento" });
 		view.getTablaDescuentos().setModel(tmodel);
 		SwingUtil.autoAdjustColumns(view.getTablaDescuentos());
 	}

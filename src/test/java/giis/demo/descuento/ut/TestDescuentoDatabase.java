@@ -30,18 +30,20 @@ public class TestDescuentoDatabase {
 
 	@BeforeClass
 	public static void setUpClass() {
-		//Aqui se pueden incluir inicializaciones comunes para toda la clase
+		// Aqui se pueden incluir inicializaciones comunes para toda la clase
 	}
+
 	@Before
 	public void setUp() {
-		db.createDatabase(true); //solo la creara la primera vez (para mejorar rendimiento)
-		loadCleanDatabase(db); 
+		db.createDatabase(true); // solo la creara la primera vez (para mejorar rendimiento)
+		loadCleanDatabase(db);
 	}
+
 	@After
-	public void tearDown(){
-		//aqui se cerrarian los objetos abiertos para el test, si no se ha hecho ya
+	public void tearDown() {
+		// aqui se cerrarian los objetos abiertos para el test, si no se ha hecho ya
 	}
-	
+
 	/**
 	 * Datos de prueba: base de datos definida para cubrir las situaciones del disenyo de la prueba.
 	 * La base de datos se crea (si no existe) en el setup, pero debe limpiarse
@@ -69,25 +71,26 @@ public class TestDescuentoDatabase {
 	 */
 	@Test
 	public void testConsultaSinParametro() {
-		DescuentoModel model=new DescuentoModel();
-		List<DescuentoDisplayDTO> descuentos=model.getListaDescuentos();
+		DescuentoModel model = new DescuentoModel();
+		List<DescuentoDisplayDTO> descuentos = model.getListaDescuentos();
         assertEquals("1,15\n"
         		+"2,20\n"
         		+"5,20\n"
         		+"6,10\n"
         		+"7,30\n", 
-        		Util.pojosToCsv(descuentos,new String[] {"id","descuento"}));
+        		Util.pojosToCsv(descuentos, new String[] {"id","descuento"}));
  	}
+	
 	/**
 	 * La misma forma de probar cuando hay parametros.
 	 */
 	@Test
 	public void testConsultaConParametro() {
-		DescuentoModel model=new DescuentoModel();
-		List<DescuentoDisplayDTO> descuentos=model.getListaDescuentos(40);
+		DescuentoModel model = new DescuentoModel();
+		List<DescuentoDisplayDTO> descuentos = model.getListaDescuentos(40);
         assertEquals("5,20\n"
         		+"6,10\n", 
-        		Util.pojosToCsv(descuentos,new String[] {"id","descuento"}));
+        		Util.pojosToCsv(descuentos, new String[] {"id","descuento"}));
  	}
 
 }

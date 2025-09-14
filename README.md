@@ -18,13 +18,13 @@ https://github.com/javiertuya/samples-test-dev
 
 Permite ilustrar, entre otros:
 - Repaso del uso de JDBC para acceder a bases de datos
+- Acceso a bases de datos con Apache Commons DbUtils
 - Un conjunto de utilidades para simplificar el acceso a base de datos y el uso de tablas en Swing
 - Implementación de MVC con Swing
 - Automatización de pruebas unitarias con varias versiones de JUnit
 - Automatización de pruebas de un interfaz de usuario AssertJ Swing
 - Automatización de pruebas BDD con JBehave (unitarias y de interfaz de usuario)
-- Estructura y configuración de un proyecto Maven 
-  con separacion de pruebas unitarias (UT) y de integración (IT) y diferentes reports
+- Estructura y configuración de un proyecto Maven con separacion de pruebas unitarias (UT) ejecutadas con surefire y de integración (IT) ejecutadas con failsafe y diferentes reports
 
 Contiene los siguientes paquetes principales:
 - `giis.demo.jdbc`: Repaso de acceso a base de datos con jdbc
@@ -42,8 +42,7 @@ La estructura es la estándar de maven:
 
 ## Requisitos e Instalación
 
-- [Descargar la última versión](https://github.com/javiertuya/samples-test-java/releases) 
-  y disponer al menos de Java 8 JDK
+- [Descargar la última versión](https://github.com/javiertuya/samples-test-java/releases) y disponer al menos de Java 8 JDK
 
 - Desde línea de comandos con [Apache Maven](https://maven.apache.org/download.cgi):
   - Asegurarse de que JAVA_HOME apunta a un JDK y no JRE
@@ -52,7 +51,6 @@ La estructura es la estándar de maven:
   - Ejecución sin tests: `mvn install -DskipTests=true`, genera todos los jar incluyendo javadoc
 
 - Desde Eclipse con M2Eclipse instalado (las distribuciones recientes ya lo incluyen).
-  Desde la raiz del proyecto:
   - Asegurarse de que esta configurado JDK: Desde build path, editar JRE System Library y en Environment
 	comprobar que JavaSE-1.8 apunta a un JDK en vez de un JRE
   - *Maven->Update Project*: Actualiza todas las dependencias y permite usar el proyecto como si hubiera sido creado desde el propio Eclipse
@@ -64,8 +62,8 @@ Programa principal (aplicaciones swing): `giis.demo.util.SwingMain`
 
 La instalacion anterior compilará, ejecutará pruebas y dispondrá de los reports en carpetas dentro de `target`:
 - `reports/testapidocs/index.html`: javadoc del proyecto
-- `site/surefire-report.html`: report de las pruebas unitarias (ut)
-- `site/failsafe-report.html`: report de las pruebas del interfaz de usuario (it)
+- `reports/surefire.html`: report estandar de las pruebas unitarias (ut)
+- `reports/failsafe-report.html`: report estandar de las pruebas del interfaz de usuario (it)
 - `site/junit*`: report consolidado de todas las pruebas con el formato que genera junit
 - `site/jacoco*`: reports de cobertura de código consolidado, y separado para ut e it
 - `jbehave`: reports estandar de jbehave 

@@ -38,37 +38,40 @@ Los casos de prueba se implementan cada uno en un assert y se organizan en difer
 public class TestDescuentoFunction {
 	@Test
 	public void testClientesNuevos() {
-		DescuentoModel model=new DescuentoModel();
-		assertEquals("caso 1",15,model.getDescuento(true, false, false));
-		assertEquals("caso 2",20,model.getDescuento(true, true, false));
+		DescuentoModel model = new DescuentoModel();
+		assertEquals("caso 1", 15, model.getDescuento(true, false, false));
+		assertEquals("caso 2", 20, model.getDescuento(true, true, false));
 	}
+
 	@Test
 	public void testClientesHabituales() {
-		DescuentoModel model=new DescuentoModel();
-		assertEquals("caso 4",0,model.getDescuento(false, false, false));
-		assertEquals("caso 5",20,model.getDescuento(false, true, false));
-		assertEquals("caso 6",10,model.getDescuento(false, false, true));
-		assertEquals("caso 7",30,model.getDescuento(false, true, true));
+		DescuentoModel model = new DescuentoModel();
+		assertEquals("caso 4", 0, model.getDescuento(false, false, false));
+		assertEquals("caso 5", 20, model.getDescuento(false, true, false));
+		assertEquals("caso 6", 10, model.getDescuento(false, false, true));
+		assertEquals("caso 7", 30, model.getDescuento(false, true, true));
 	}
+
 	/**
 	 * Prueba de la clase invalida (causa excepcion)
 	 */
-	@Test(expected=ApplicationException.class)
+	@Test(expected = ApplicationException.class)
 	public void testClientesNuevosNoPuedenTenerTarjeta() {
-		DescuentoModel model=new DescuentoModel();
-		model.getDescuento(true, false, true); //caso 4
+		DescuentoModel model = new DescuentoModel();
+		model.getDescuento(true, false, true); // caso 4
 	}
+
 	/**
 	 * La misma clase invalida comprobando la excepcion al estilo JUnit 3
 	 */
 	@Test
 	public void testClientesNuevosNoPuedenTenerTarjetaJUnit3() {
-		DescuentoModel model=new DescuentoModel();
+		DescuentoModel model = new DescuentoModel();
 		try {
-			model.getDescuento(true, false, true); //caso 4
+			model.getDescuento(true, false, true); // caso 4
 			fail("Se deberia producir una excepcion");
 		} catch (RuntimeException e) {
-			assertEquals("Un cliente nuevo no puede disponer de tarjeta de fidelizacion",e.getMessage());
+			assertEquals("Un cliente nuevo no puede disponer de tarjeta de fidelizacion", e.getMessage());
 		}
 	}
 
@@ -81,9 +84,9 @@ public class TestDescuentoFunction {
 	 */
 	@Test
 	public void testClientesNuevosHamcrest() {
-		DescuentoModel model=new DescuentoModel();
-		assertThat("caso 1",15,equalTo(model.getDescuento(true, false, false)));
-		assertThat("caso 2",20,equalTo(model.getDescuento(true, true, false)));
+		DescuentoModel model = new DescuentoModel();
+		assertThat("caso 1", 15, equalTo(model.getDescuento(true, false, false)));
+		assertThat("caso 2", 20, equalTo(model.getDescuento(true, true, false)));
 	}
 
 }

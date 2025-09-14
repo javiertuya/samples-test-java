@@ -44,30 +44,31 @@ public class DescuentoView {
 		frame.setBounds(0, 0, 350, 350);
 		frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new MigLayout("", "", ""));
-		
+
 		JLabel lblDescuentos = new JLabel("Descuentos");
 		frame.getContentPane().add(lblDescuentos, "cell 0 5, grow");
-		
-		//Incluyo la tabla en un JScrollPane y anyado este en vez de la tabla para poder ver los headers de la tabla
+
+		// Incluyo la tabla en un JScrollPane y anyado este en vez de la tabla para
+		// poder ver los headers de la tabla
 		tabDescuentos = new JTable();
 		tabDescuentos.setName("tabDescuentos");
 		tabDescuentos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tabDescuentos.setDefaultEditor(Object.class, null); //readonly
+		tabDescuentos.setDefaultEditor(Object.class, null); // readonly
 		JScrollPane tablePanel = new JScrollPane(tabDescuentos);
 		frame.getContentPane().add(tablePanel, "cell 0 6,grow");
-		
+
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, "cell 1 6,grow");
 		panel.setLayout(new MigLayout("", "[306px][116px]", "[22px][25px][]"));
-		
+
 		JLabel lblFiltro = new JLabel("<html>Filtrar Clientes<br/>con edad menor que<br/>los años indicados</html>");
 		panel.add(lblFiltro, "cell 0 0,alignx left,aligny center");
-		
+
 		txtAnyos = new JTextField();
 		txtAnyos.setName("txtAnyos");
 		panel.add(txtAnyos, "flowx,cell 0 1,alignx left,aligny top");
 		txtAnyos.setColumns(10);
-		
+
 		btnAplicarFiltro = new JButton("Aplicar filtro");
 		btnAplicarFiltro.setName("btnAplicarFiltro");
 		panel.add(btnAplicarFiltro, "cell 0 2,alignx left,aligny top");

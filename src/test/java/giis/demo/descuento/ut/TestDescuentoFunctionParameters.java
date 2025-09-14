@@ -40,17 +40,18 @@ public class TestDescuentoFunctionParameters {
 		"10, false, false, true", 
 		"30, false, true, true"})  
 	public void testClientesParametrized(int expected, boolean nuevo, boolean cupon, boolean tarjeta) {
-		DescuentoModel model=new DescuentoModel();
-		assertEquals(expected,model.getDescuento(nuevo,cupon,tarjeta));
+		DescuentoModel model = new DescuentoModel();
+		assertEquals(expected, model.getDescuento(nuevo, cupon, tarjeta));
 	}
+
 	/**
 	 * Los parametros tambien se pueden especificar en un fichero externo (csv)
 	 */
 	@Test
-	@FileParameters("src/test/resources/test-parameters.csv")  
+	@FileParameters("src/test/resources/test-parameters.csv")
 	public void testClientesParametrizedFile(int expected, boolean nuevo, boolean cupon, boolean tarjeta) {
-		DescuentoModel model=new DescuentoModel();
-		assertEquals(expected,model.getDescuento(nuevo,cupon,tarjeta));
+		DescuentoModel model = new DescuentoModel();
+		assertEquals(expected, model.getDescuento(nuevo, cupon, tarjeta));
 	}
 
 }

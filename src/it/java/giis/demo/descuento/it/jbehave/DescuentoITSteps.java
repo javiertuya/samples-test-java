@@ -21,48 +21,56 @@ import giis.demo.util.Util;
  */
 public class DescuentoITSteps {
 	//puesto que un mismo test ejecutara varios pasos se deben guardar valores generados en un paso para uso en el siguiente
-    private Database db;
-    private FrameFixture window;
-    
-    @BeforeScenario
-    public void beforeEachScenario() {
-    	db=new Database();
+	private Database db;
+	private FrameFixture window;
+
+	@BeforeScenario
+	public void beforeEachScenario() {
+		db = new Database();
 		db.createDatabase(true);
 		db.executeUpdate("delete from clientes");
-    }
-    @AfterScenario
-    public void afterEachScenario() {
-		AssertjUtil.takeScreenshot(window,"JBehave-final");	
+	}
+
+	@AfterScenario
+	public void afterEachScenario() {
+		AssertjUtil.takeScreenshot(window, "JBehave-final");
 		window.cleanUp();
-    }
-    @Given("los siguientes clientes en base de datos: $clientesbd")
-    public void setClientes(ExamplesTable clientes) {
-        String sql="insert into clientes(id,edad,nuevo,cupon,tarjeta) values (?,?,?,?,?)";
-        for (Map<String,String> row : clientes.getRows()) {
-            db.executeUpdate(sql, row.get("id"), row.get("edad"), row.get("nuevo"), row.get("cupon"), row.get("tarjeta"));
-        }
-    }
-    @When("Se inicia la ventana")
-    public void setApplication() {
-		window=AssertjUtil.getApplicationFixture("Ejecutar giis.demo.descuento", "Descuento");
-		AssertjUtil.takeScreenshot(window,"JBehave-inicial");	
-    }
-    @When("se cambia la edad a $edad")
-    public void setEdad(String edad) {
+	}
+
+	@Given("los siguientes clientes en base de datos: $clientesbd")
+	public void setClientes(ExamplesTable clientes) {
+		String sql = "insert into clientes(id,edad,nuevo,cupon,tarjeta) values (?,?,?,?,?)";
+		for (Map<String, String> row : clientes.getRows()) {
+			db.executeUpdate(sql, row.get("id"), row.get("edad"), 
+					row.get("nuevo"), row.get("cupon"), row.get("tarjeta"));
+		}
+	}
+
+	@When("Se inicia la ventana")
+	public void setApplication() {
+		window = AssertjUtil.getApplicationFixture("Ejecutar giis.demo.descuento", "Descuento");
+		AssertjUtil.takeScreenshot(window, "JBehave-inicial");
+	}
+
+	@When("se cambia la edad a $edad")
+	public void setEdad(String edad) {
 		window.textBox("txtAnyos").setText(edad);
 		window.button("btnAplicarFiltro").click();
-		AssertjUtil.takeScreenshot(window,"JBehave-cambio-edad-"+edad);	
-    }
-    @When("se elimina la edad")
-    public void setEdad() {
+		AssertjUtil.takeScreenshot(window, "JBehave-cambio-edad-" + edad);
+	}
+
+	@When("se elimina la edad")
+	public void setEdad() {
 		window.textBox("txtAnyos").setText("");
 		window.button("btnAplicarFiltro").click();
-		AssertjUtil.takeScreenshot(window,"JBehave-elimina-edad");	
-   }
-    @Then("los descuentos visualizados son: $descuentos")
-    public void getDescuentos(ExamplesTable descuentos) {
-    	String expected=descuentos.asString();
-		String actual=Util.arraysToCsv(window.table("tabDescuentos").contents(),new String[] {"id","descuento"},"|","|","|");
-    	assertEquals(expected,actual);
-     }
+		AssertjUtil.takeScreenshot(window, "JBehave-elimina-edad");
+	}
+
+	@Then("los descuentos visualizados son: $descuentos")
+	public void getDescuentos(ExamplesTable descuentos) {
+		String expected = descuentos.asString();
+		String actual = Util.arraysToCsv(window.table("tabDescuentos").contents(), 
+				new String[] { "id", "descuento" }, "|", "|", "|");
+		assertEquals(expected, actual);
+	}
 }
