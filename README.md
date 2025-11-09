@@ -23,7 +23,7 @@ Permite ilustrar, entre otros:
 - Implementación de MVC con Swing
 - Automatización de pruebas unitarias con varias versiones de JUnit
 - Automatización de pruebas de un interfaz de usuario AssertJ Swing
-- Automatización de pruebas BDD con JBehave (unitarias y de interfaz de usuario)
+- Automatización de pruebas BDD con Cucumber (unitarias y de interfaz de usuario)
 - Estructura y configuración de un proyecto Maven con separacion de pruebas unitarias (UT) ejecutadas con surefire y de integración (IT) ejecutadas con failsafe y diferentes reports
 
 Contiene los siguientes paquetes principales:
@@ -31,7 +31,7 @@ Contiene los siguientes paquetes principales:
 - `giis.demo.tkrun`: Ilustra estructura de proyecto MVC con Swing (TicketRun)
 - `giis.demo.tkrun.ut`: Ilustra pruebas con JUnit para TicketRun
 - `giis.demo.tkrun.it`: Ilustra pruebas con AssertJ Swing para TicketRun
-- `giis.demo.descuento.*`: Ilustra lo anterior para Descuento, más pruebas BDD con JBehave
+- `giis.demo.descuento.*`: Ilustra lo anterior para Descuento, más pruebas BDD con Cucumber
 - `giis.demo.util`: Diferentes utilidades de uso por parte de los anteriores
 
 La estructura es la estándar de maven:
@@ -66,4 +66,4 @@ La instalacion anterior compilará, ejecutará pruebas y dispondrá de los repor
 - `reports/failsafe-report.html`: report estandar de las pruebas del interfaz de usuario (it)
 - `site/junit*`: report consolidado de todas las pruebas con el formato que genera junit
 - `site/jacoco*`: reports de cobertura de código consolidado, y separado para ut e it
-- `jbehave`: reports estandar de jbehave 
+- `cucumber*.html`: reports html estandar de Cucumber 
