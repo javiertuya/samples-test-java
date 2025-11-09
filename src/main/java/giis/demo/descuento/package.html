@@ -25,8 +25,10 @@ Si el cliente tiene un cupón de descuento obtiene el 20% de descuento
 <em>Notas sobre pruebas unitarias:</em> Se implementa TestDescuentoFunction en paquete giis.demo.descuento.ut con JUnit 4 para cubrir todas las situaciones 
 correspondientes al diseño de las pruebas del modelo. Se implementan las mismas pruebas (1) distribuyendo los  casos de prueba
 en diferentes métodos de prueba  y(2) como pruebas parametrizadas..
-<br/>Las mismas pruebas se implementan en estilo BDD utilizando JBehave (unitarias y de interfaz de usuario)
-en descuento.ut.jbehave (historia descuento-function.story) junto con la el mapeo de  los pasos (DescuentoFunctionSteps.java) y la configuración (DescuentoStories.java). Tambien incluye pruebas sin parametrizar y parametrizadas (con ejemplos).</li><li>
+<br/>Las mismas pruebas se implementan en estilo BDD utilizando Cucumber (unitarias y de interfaz de usuario)
+en descuento.ut.cucumber junto con la el mapeo de  los pasos y el runner. 
+Tambien incluye pruebas sin parametrizar y parametrizadas (con ejemplos).
+</li><li>
 <em>Notas sobre pruebas del interfaz de usuario:</em> No aplicable.
 </li>
 </ul>
@@ -41,8 +43,8 @@ executeQuery* en la clase DbUtil y un DTO con los datos de la lista de descuento
 <em>Notas sobre pruebas unitarias:</em> Se implementa TestDescuentoDatabase.testConsultaSinParametro en giis.demo.descuento.ut con JUnit 4 para cubrir todas las situaciones 
 correspondientes al diseño de las pruebas del modelo (en este caso solo hay un caso de prueba sin clases inválidad).
 <br/>Como en el anterior, 
-las mismas pruebas se implementan en estilo BDD utilizando JBehave
-en descuento.ut.jbehave (historia descuento-database.story) añadiendo con la definición de pasos (DescuentoDatabaseSteps.java).</li><li>
+las mismas pruebas se implementan en estilo BDD utilizando cucumber
+en descuento.ut.cucumber.</li><li>
 <em>Notas sobre pruebas del interfaz de usuario:</em> No aplicable.
 </li>
 </ul>
@@ -55,8 +57,8 @@ en descuento.ut.jbehave (historia descuento-database.story) añadiendo con la de
 </li><li>
 <em>Notas sobre pruebas unitarias:</em> Se añade TestDescuentoDatabase.testConsultaConParametro en giis.demo.descuento.ut con JUnit 4 para añadir la situación en la que se especifica la edad.
 <br/>Como en el anterior, 
-las mismas pruebas se implementan en estilo BDD utilizando JBehave
-en descuento.ut.jbehave (historia descuento-database.story) añadiendo al escenario anterior un paso que repersenta la consulta con un valor en la edad.</li><li>
+las mismas pruebas se implementan en estilo BDD utilizando cucumber
+en descuento.ut.cucumber añadiendo al escenario anterior un paso que repersenta la consulta con un valor en la edad.</li><li>
 <em>Notas sobre pruebas del interfaz de usuario:</em> No aplicable.
 </li>
 </ul>
@@ -72,8 +74,8 @@ utilizando el modelo ya implementado.
 </li><li>
 <em>Notas sobre pruebas del interfaz de usuario:</em> Se implementa una prueba simple en giis.demo.descuento.it 
 automatizada con AssertJ Swing que ejecuta los cuatro pasos del caso de prueba.
-<br/>Como en los anteriores se implementa el mismo caso de prueba con estilo BDD utilizando JBehave en giis.demo.descuento.it.jbehave
-(descuento-it.story) junto con el mapeo de los pasos y la  configuración.
+<br/>Como en los anteriores se implementa el mismo caso de prueba con estilo BDD utilizando cucumber en giis.demo.descuento.it.cucumber
+junto con el mapeo de los pasos y la  configuración.
 </li>
 </ul>
 

@@ -57,6 +57,7 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- pruebas BDD -->
+		<!--
 		<dependency>
 			<groupId>org.jbehave</groupId>
 			<artifactId>jbehave-core</artifactId>
@@ -69,6 +70,7 @@
 			<version>2.3.2</version>
 			<scope>test</scope>
 		</dependency>
+		-->
 		<dependency>
 		    <groupId>io.cucumber</groupId>
 		    <artifactId>cucumber-java</artifactId>
@@ -192,20 +194,12 @@
 				</executions>
 			</plugin>
 
-			<!-- Configuracion para tests con jbehave. Consideraciones: Por defecto, 
-				jbehave busca las pruebas en src/main, pero como son pruebas se han puesto 
-				en las carpetas src/test o src/it. Por ello se requiere indicar el scope 
-				en test (para poder tener todo junto en el mismo paquete estan los escenarios 
-				gherkin y las clases java auxiliares necesarias). Otro problema es que desde 
-				Eclipse los test gherkin se copian correctamente a la carpeta con las clases 
-				de test, pero desde maven no. Por eso se anyade un resources plugin que realiza 
-				esta copia justo tras compilar las pruebas y antes de ejecutarlas (fase process-test-classes) -->
+			<!--
 			<plugin>
 				<groupId>org.jbehave</groupId>
 				<artifactId>jbehave-maven-plugin</artifactId>
 				<version>5.2.0</version>
 				<executions>
-					<!-- localizacion del mapping de historias y ejecucion en ut y en it -->
 					<execution>
 						<id>run-stories-ut</id>
 						<phase>test</phase>
@@ -248,13 +242,14 @@
 					</execution>
 				</executions>
 			</plugin>
+			-->
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.4.0</version>
 				<executions>
-					<!-- copia del fuente de las historias a target para que se puedan localizar -->
+					<!-- copia del fuente de las features de cucumber a target/*classes para que se puedan localizar desde maven -->
 					<execution>
-						<id>copy-stories</id>
+						<id>copy-features</id>
 						<phase>process-test-classes</phase>
 						<goals>
 							<goal>copy-resources</goal>
@@ -265,7 +260,6 @@
 								<resource>
 									<directory>${basedir}/src/test/java</directory>
 									<includes>
-										<include>**/*.story</include>
 										<include>**/*.feature</include>
 									</includes>
 									<filtering>true</filtering>
@@ -273,7 +267,6 @@
 								<resource>
 									<directory>${basedir}/src/it/java</directory>
 									<includes>
-										<include>**/*.story</include>
 										<include>**/*.feature</include>
 									</includes>
 									<filtering>true</filtering>
