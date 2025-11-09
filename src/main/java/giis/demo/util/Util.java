@@ -128,7 +128,7 @@ public class Util {
 
 	/**
 	 * Convierte un array bidimensional de strings a csv permitiendo parametrizacion
-	 * (usado para comparaciones del ui con AssertJ Swing y JBehave)
+	 * (usado para comparaciones del ui con AssertJ Swing y Cucumber)
 	 */
 	public static String arraysToCsv(String[][] arrays, String[] fields, String separator, String begin, String end) {
 		StringBuilder sb = new StringBuilder();
