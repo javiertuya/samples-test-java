@@ -69,6 +69,18 @@
 			<version>2.3.2</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+		    <groupId>io.cucumber</groupId>
+		    <artifactId>cucumber-java</artifactId>
+		    <version>7.31.0</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>io.cucumber</groupId>
+		    <artifactId>cucumber-junit</artifactId>
+		    <version>7.31.0</version>
+		    <scope>test</scope>
+		</dependency>
 		<!-- ENDREDUCE -->
 		<dependency>
 		  <groupId>io.github.javiertuya</groupId>
@@ -254,6 +266,7 @@
 									<directory>${basedir}/src/test/java</directory>
 									<includes>
 										<include>**/*.story</include>
+										<include>**/*.feature</include>
 									</includes>
 									<filtering>true</filtering>
 								</resource>
@@ -261,6 +274,7 @@
 									<directory>${basedir}/src/it/java</directory>
 									<includes>
 										<include>**/*.story</include>
+										<include>**/*.feature</include>
 									</includes>
 									<filtering>true</filtering>
 								</resource>

@@ -27,7 +27,7 @@ jobs:
       - name: Build and run all tests
         uses: coactions/setup-xvfb@v1
         with:
-          run: mvn verify -Dmaven.test.failure.ignore=true -U --no-transfer-progress
+          run: mvn install -Dmaven.test.failure.ignore=true -U --no-transfer-progress
 
       - name: Publish surefire test report
         if: always()
@@ -45,8 +45,10 @@ jobs:
           path: |
             target/screenshots/
             target/site/
-            target/reports/surefire.html
-            target/reports/failsafe-report.html
+            target/*.html
+            target/surefire-reports/
+            target/failsafe-reports/
+            target/reports/*.html
 
       - if: always()
         name: Publish test reports for sonarqube job
