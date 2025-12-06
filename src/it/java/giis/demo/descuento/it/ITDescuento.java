@@ -1,10 +1,17 @@
 package giis.demo.descuento.it;
-import org.assertj.swing.fixture.FrameFixture;
-import org.assertj.swing.edt.FailOnThreadViolationRepaintManager;
-import org.junit.*;
-import giis.demo.util.*;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.assertj.swing.edt.FailOnThreadViolationRepaintManager;
+import org.assertj.swing.fixture.FrameFixture;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import giis.demo.util.AssertjUtil;
+import giis.demo.util.Database;
+import giis.demo.util.Util;
 
 /**
  * Pruebas de la interaccion del usuario con la aplicacion swing del ejemplo de descuentos a clientes 
@@ -26,12 +33,12 @@ public class ITDescuento {
 
 	private Database db = new Database();
 
-	@BeforeClass
+	@BeforeAll
 	public static void setUpOnce() {
 		FailOnThreadViolationRepaintManager.install();
 	}
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		db.createDatabase(true);
 		// Utiliza el mismo setup de datos que en los tests ut
@@ -40,7 +47,7 @@ public class ITDescuento {
 		window = AssertjUtil.getApplicationFixture("Ejecutar giis.demo.descuento", "Descuento");
 	}
 
-	@After
+	@AfterEach
 	public void tearDown() {
 		window.cleanUp();
 	}
