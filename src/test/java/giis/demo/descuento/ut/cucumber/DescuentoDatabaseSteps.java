@@ -1,6 +1,6 @@
 package giis.demo.descuento.ut.cucumber;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.Map;
@@ -17,7 +17,6 @@ import io.cucumber.java.en.When;
 /**
  * Define el mapping (glue) de los pasos para descuento-database.feature.
  * Maneja las estructuras tabulares que representan tablas en base de datos o en la salida de la aplicacion
- * Las comparaciones de tablas se realizan comparando la representacion de estas tablas como strings csv.
  */
 public class DescuentoDatabaseSteps {
 	private Database db;

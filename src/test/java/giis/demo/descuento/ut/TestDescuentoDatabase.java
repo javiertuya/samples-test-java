@@ -1,12 +1,13 @@
 package giis.demo.descuento.ut;
-import static org.junit.Assert.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import giis.demo.descuento.DescuentoDisplayDTO;
 import giis.demo.descuento.DescuentoModel;
@@ -28,18 +29,18 @@ Filtrado por edad
 public class TestDescuentoDatabase {
 	private static Database db=new Database();
 
-	@BeforeClass
+	@BeforeAll
 	public static void setUpClass() {
 		// Aqui se pueden incluir inicializaciones comunes para toda la clase
 	}
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		db.createDatabase(true); // solo la creara la primera vez (para mejorar rendimiento)
 		loadCleanDatabase(db);
 	}
 
-	@After
+	@AfterEach
 	public void tearDown() {
 		// aqui se cerrarian los objetos abiertos para el test, si no se ha hecho ya
 	}
@@ -47,7 +48,7 @@ public class TestDescuentoDatabase {
 	/**
 	 * Datos de prueba: base de datos definida para cubrir las situaciones del disenyo de la prueba.
 	 * La base de datos se crea (si no existe) en el setup, pero debe limpiarse
-	 * porque podrian quedar datos de tests ejecutados con anterioridad
+	 * para eliminar datos de tests ejecutados con anterioridad
 	 */
 	public static void loadCleanDatabase(Database db) {
 		//Otra alternativa es utilizar un script externo con las queries y ejecutarlo con db.executeScript
@@ -73,11 +74,13 @@ public class TestDescuentoDatabase {
 	public void testConsultaSinParametro() {
 		DescuentoModel model = new DescuentoModel();
 		List<DescuentoDisplayDTO> descuentos = model.getListaDescuentos();
-        assertEquals("1,15\n"
-        		+"2,20\n"
-        		+"5,20\n"
-        		+"6,10\n"
-        		+"7,30\n", 
+        assertEquals("""
+        		1,15
+        		2,20
+        		5,20
+        		6,10
+        		7,30
+        		""", 
         		Util.pojosToCsv(descuentos, new String[] {"id","descuento"}));
  	}
 	
@@ -88,8 +91,10 @@ public class TestDescuentoDatabase {
 	public void testConsultaConParametro() {
 		DescuentoModel model = new DescuentoModel();
 		List<DescuentoDisplayDTO> descuentos = model.getListaDescuentos(40);
-        assertEquals("5,20\n"
-        		+"6,10\n", 
+        assertEquals("""
+        		5,20
+        		6,10
+        		""", 
         		Util.pojosToCsv(descuentos, new String[] {"id","descuento"}));
  	}
 

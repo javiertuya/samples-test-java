@@ -21,7 +21,7 @@ Permite ilustrar, entre otros:
 - Acceso a bases de datos con Apache Commons DbUtils
 - Un conjunto de utilidades para simplificar el acceso a base de datos y el uso de tablas en Swing
 - Implementación de MVC con Swing
-- Automatización de pruebas unitarias con varias versiones de JUnit
+- Automatización de pruebas unitarias con varias versiones de JUnit 6
 - Automatización de pruebas de un interfaz de usuario AssertJ Swing
 - Automatización de pruebas BDD con Cucumber (unitarias y de interfaz de usuario)
 - Estructura y configuración de un proyecto Maven con separacion de pruebas unitarias (UT) ejecutadas con surefire y de integración (IT) ejecutadas con failsafe y diferentes reports
@@ -42,7 +42,7 @@ La estructura es la estándar de maven:
 
 ## Requisitos e Instalación
 
-- [Descargar la última versión](https://github.com/javiertuya/samples-test-java/releases) y disponer al menos de Java 8 JDK
+- [Descargar la última versión](https://github.com/javiertuya/samples-test-java/releases) y disponer al menos de Java 17 JDK
 
 - Desde línea de comandos con [Apache Maven](https://maven.apache.org/download.cgi):
   - Asegurarse de que JAVA_HOME apunta a un JDK y no JRE
@@ -52,7 +52,7 @@ La estructura es la estándar de maven:
 
 - Desde Eclipse con M2Eclipse instalado (las distribuciones recientes ya lo incluyen).
   - Asegurarse de que esta configurado JDK: Desde build path, editar JRE System Library y en Environment
-	comprobar que JavaSE-1.8 apunta a un JDK en vez de un JRE
+	comprobar que JavaSE-17 apunta a un JDK en vez de un JRE
   - *Maven->Update Project*: Actualiza todas las dependencias y permite usar el proyecto como si hubiera sido creado desde el propio Eclipse
   - *Run As->Maven install*: Ejecuta este (o otros) comandos maven desde Eclipse
 
@@ -66,4 +66,4 @@ La instalacion anterior compilará, ejecutará pruebas y dispondrá de los repor
 - `reports/failsafe-report.html`: report estandar de las pruebas del interfaz de usuario (it)
 - `site/junit*`: report consolidado de todas las pruebas con el formato que genera junit
 - `site/jacoco*`: reports de cobertura de código consolidado, y separado para ut e it
-- `cucumber*.html`: reports html estandar de Cucumber 
+- `reports/cucumber.html`: reports html estandar de Cucumber 

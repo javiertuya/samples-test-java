@@ -1,7 +1,7 @@
 package giis.demo.descuento.ut.cucumber;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import giis.demo.descuento.DescuentoModel;
 import io.cucumber.java.en.Given;

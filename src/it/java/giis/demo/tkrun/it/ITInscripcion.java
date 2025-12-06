@@ -1,17 +1,17 @@
 package giis.demo.tkrun.it;
 
 import static org.assertj.swing.core.matcher.JButtonMatcher.withText;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.assertj.swing.data.TableCell ;
 import org.assertj.swing.edt.FailOnThreadViolationRepaintManager;
 import org.assertj.swing.finder.JOptionPaneFinder;
 import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JOptionPaneFixture;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import giis.demo.util.AssertjUtil;
 import giis.demo.util.Database;
@@ -45,13 +45,13 @@ public class ITInscripcion {
 
 	private Database db = new Database();
 
-	@BeforeClass
+	@BeforeAll
 	public static void setUpOnce() {
 		// https://joel-costigliola.github.io/assertj/assertj-swing-edt.html
 		FailOnThreadViolationRepaintManager.install();
 	}
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		db.createDatabase(true);
 		// Utiliza el mismo setup de datos que en los tests ut
@@ -60,7 +60,7 @@ public class ITInscripcion {
 		window = AssertjUtil.getApplicationFixture("Ejecutar giis.demo.tkrun", "Carreras");
 	}
 
-	@After
+	@AfterEach
 	public void tearDown() {
 		window.cleanUp();
 	}

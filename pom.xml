@@ -16,23 +16,40 @@
 	<url>https://github.com/javiertuya/samples-test-java</url>
 
 	<properties>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		
+		<junit.version>6.0.1</junit.version>
+		
 		<surefire.version>3.5.4</surefire.version>
 		
 		<slf4j.version>2.0.17</slf4j.version>
+		
+		<!-- BEGINREDUCE -->
+		<cucumber.version>7.31.0</cucumber.version>
+		<!-- ENDREDUCE -->
 	</properties>
 
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.13.2</version>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+		    <version>${junit.version}</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter-params</artifactId>
+		    <version>${junit.version}</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.hamcrest</groupId>
+		    <artifactId>hamcrest</artifactId>
+		    <version>3.0</version>
 		</dependency>
 		<!-- pruebas junit con parametros -->
 		<dependency>
@@ -57,31 +74,23 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- pruebas BDD -->
-		<!--
-		<dependency>
-			<groupId>org.jbehave</groupId>
-			<artifactId>jbehave-core</artifactId>
-			<version>4.8.3</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.github.valfirst</groupId>
-			<artifactId>jbehave-junit-runner</artifactId>
-			<version>2.3.2</version>
-			<scope>test</scope>
-		</dependency>
-		-->
 		<dependency>
 		    <groupId>io.cucumber</groupId>
 		    <artifactId>cucumber-java</artifactId>
-		    <version>7.31.0</version>
+		    <version>${cucumber.version}</version>
 		    <scope>test</scope>
 		</dependency>
 		<dependency>
-		    <groupId>io.cucumber</groupId>
-		    <artifactId>cucumber-junit</artifactId>
-		    <version>7.31.0</version>
-		    <scope>test</scope>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit-platform-engine</artifactId>
+		    <version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-suite</artifactId>
+		    <version>${junit.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<!-- ENDREDUCE -->
 		<dependency>
@@ -194,55 +203,6 @@
 				</executions>
 			</plugin>
 
-			<!--
-			<plugin>
-				<groupId>org.jbehave</groupId>
-				<artifactId>jbehave-maven-plugin</artifactId>
-				<version>5.2.0</version>
-				<executions>
-					<execution>
-						<id>run-stories-ut</id>
-						<phase>test</phase>
-						<configuration>
-							<scope>test</scope>
-							<skip>${skipTests}</skip>
-							<includes>
-								<include>**/*Stories.java</include>
-							</includes>
-							<testSourceDirectory>src/test/java</testSourceDirectory>
-							<ignoreFailureInStories>true</ignoreFailureInStories>
-							<ignoreFailureInView>false</ignoreFailureInView>
-						</configuration>
-						<goals>
-							<goal>run-stories-as-embeddables</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>unpack-view-resources</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>unpack-view-resources</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>run-stories-it</id>
-						<phase>integration-test</phase>
-						<configuration>
-							<scope>test</scope>
-							<includes>
-								<include>**/*DisabledStories.java</include>
-							</includes>
-							<testSourceDirectory>src/it/java</testSourceDirectory>
-							<ignoreFailureInStories>true</ignoreFailureInStories>
-							<ignoreFailureInView>false</ignoreFailureInView>
-						</configuration>
-						<goals>
-							<goal>run-stories-as-embeddables</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			-->
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.4.0</version>
@@ -259,13 +219,6 @@
 							<resources>
 								<resource>
 									<directory>${basedir}/src/test/java</directory>
-									<includes>
-										<include>**/*.feature</include>
-									</includes>
-									<filtering>true</filtering>
-								</resource>
-								<resource>
-									<directory>${basedir}/src/it/java</directory>
 									<includes>
 										<include>**/*.feature</include>
 									</includes>
