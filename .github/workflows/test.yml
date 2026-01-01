@@ -39,7 +39,7 @@ jobs:
  
       - if: always()
         name: Publish html test reports to an artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: test-reports-files
           path: |
@@ -51,7 +51,7 @@ jobs:
 
       - if: always()
         name: Publish test reports for sonarqube job
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: test-reports-for-sonar
           path: |
