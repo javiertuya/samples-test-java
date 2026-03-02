@@ -31,7 +31,7 @@ jobs:
 
       - name: Publish surefire test report
         if: always()
-        uses: mikepenz/action-junit-report@v6.2.0
+        uses: mikepenz/action-junit-report@v6.3.0
         with:
           check_name: test-report
           report_paths: 'target/*-reports/TEST-*.xml'
@@ -39,7 +39,7 @@ jobs:
  
       - if: always()
         name: Publish html test reports to an artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: test-reports-files
           path: |
@@ -51,7 +51,7 @@ jobs:
 
       - if: always()
         name: Publish test reports for sonarqube job
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: test-reports-for-sonar
           path: |
