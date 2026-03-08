@@ -1,12 +1,12 @@
 # Ejemplo basico de definición de escenarios de una historia de prueba en el lenguaje Gherkin de Cucumber
 
-Feature: Funcion de calculo de descuento de clientes (problema 3a)
+Feature: Funcion de calculo de descuento de clientes - problema 3a
 
   # En teoría, debería haber un solo un paso When/Then en cada escenario, pero en ocasiones puede 
   # haber varios pasos para compactar los escenarios (como cuando se implementan varios casos de prueba en JUnit)
   # Aquí se reproduce una estructura similar a los casos implementados con JUnit				 
 
-  Scenario:  Descuento para clientes nuevos (casos 1-3, el 3 invalido)
+  Scenario:  Descuento para clientes nuevos - casos 1-3, el 3 invalido
     Given un cliente nuevo
     When sin cupon y sin tarjeta
     Then el descuento es 15
@@ -15,7 +15,7 @@ Feature: Funcion de calculo de descuento de clientes (problema 3a)
     When sin cupon y con tarjeta
     Then error "Un cliente nuevo no puede disponer de tarjeta de fidelizacion"
 
-  Scenario:  Descuento para clientes habituales (casos 4-7)
+  Scenario:  Descuento para clientes habituales - casos 4-7
     Given un cliente habitual
     When sin cupon y sin tarjeta
     Then el descuento es 0

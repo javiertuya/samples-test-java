@@ -1,7 +1,7 @@
 # Ejemplo de datos tabulares (Data Tables).
 # Utilizados para representar los datos iniciales en la base de datos y las salidas
 
-Feature: Informe de descuento de clientes desde base de datos (problema 3b y 3c)
+Feature: Informe de descuento de clientes desde base de datos - problema 3b y 3c
 
   In order to ver descuentos aplicables a clientes 
   As a empleado del banco
