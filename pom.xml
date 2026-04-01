@@ -29,7 +29,7 @@
 		<slf4j.version>2.0.17</slf4j.version>
 		
 		<!-- BEGINREDUCE -->
-		<cucumber.version>7.34.2</cucumber.version>
+		<cucumber.version>7.34.3</cucumber.version>
 		<!-- ENDREDUCE -->
 	</properties>
 
