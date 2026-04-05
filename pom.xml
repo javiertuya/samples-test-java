@@ -29,7 +29,7 @@
 		<slf4j.version>2.0.17</slf4j.version>
 		
 		<!-- BEGINREDUCE -->
-		<cucumber.version>7.34.2</cucumber.version>
+		<cucumber.version>7.34.3</cucumber.version>
 		<!-- ENDREDUCE -->
 	</properties>
 
@@ -50,7 +50,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.42</version>
+			<version>1.18.44</version>
 			<scope>provided</scope>
 		</dependency>
 		<!-- BEGINREDUCE -->
@@ -91,7 +91,7 @@
 		<dependency>
 			<groupId>org.xerial</groupId>
 			<artifactId>sqlite-jdbc</artifactId>
-			<version>3.51.2.0</version>
+			<version>3.51.3.0</version>
 		</dependency>
 		<!-- Logs -->
 		<dependency>
@@ -126,7 +126,7 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.21.1</version>
+			<version>2.21.2</version>
 		</dependency>
 	</dependencies>
 
@@ -193,7 +193,7 @@
 
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.4.0</version>
+				<version>3.5.0</version>
 				<executions>
 					<!-- copia del fuente de las features de cucumber a target/*classes para que se puedan localizar desde maven -->
 					<execution>
