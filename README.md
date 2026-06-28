@@ -56,6 +56,12 @@ La estructura es la estándar de maven:
   - *Maven->Update Project*: Actualiza todas las dependencias y permite usar el proyecto como si hubiera sido creado desde el propio Eclipse
   - *Run As->Maven install*: Ejecuta este (o otros) comandos maven desde Eclipse
 
+- Desde Visual Studio Code: 
+  - El directorio `.vscode` contiene una configuración básica y recomienda instalar el *Extension Pack for Java*. Con este plugin, los tests se pueden ejecutar desde el Test Explorer de VSCode.
+  - Opcionalmente, *Cucumber (Gherkin) Full Support* para editar los `.feature` y *XML by Red Hat* para el `pom.xml`.
+  - Los tests de Cucumber no aparecen en el Test Explorer; se ejecutan con el icono ▶ *Run* sobre
+    la clase `TestDescuentoRunner`, o con `mvn test -Dtest=**/cucumber/*`.
+
 Programa principal (aplicaciones swing): `giis.demo.util.SwingMain`
 
 ## Reports

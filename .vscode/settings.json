@@ -1,0 +1,14 @@
+{
+    // Sincroniza el classpath automaticamente al cambiar el pom.xml (evita el "Reload" manual)
+    "java.configuration.updateBuildConfiguration": "automatic",
+    // Proyecto solo Maven: evita el sondeo de Gradle
+    "java.import.gradle.enabled": false,
+    // Rendimiento: no vigilar los artefactos generados por Maven
+    "files.watcherExclude": {
+        "**/target/**": true
+    },
+    // Formateo de Java con la extension de Red Hat (incluida en el Extension Pack)
+    "[java]": {
+        "editor.defaultFormatter": "redhat.java"
+    }
+}
