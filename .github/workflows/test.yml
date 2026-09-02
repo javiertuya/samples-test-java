@@ -35,9 +35,12 @@ jobs:
         if: always()
         uses: mikepenz/action-junit-report@v6.5.0
         with:
+          # Este action crea un check run separado llamado "test-report" que GitHub
+          # puede mostrar como si fuera un job adicional incluso en otros workflows
+          # del mismo commit. No debe marcar como fallido el run principal.
           check_name: test-report
           report_paths: 'target/*-reports/TEST-*.xml'
-          fail_on_failure: 'true'
+          fail_on_failure: 'false'
  
       - if: always()
         name: Publish html test reports to an artifact
