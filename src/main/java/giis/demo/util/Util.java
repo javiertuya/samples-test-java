@@ -10,8 +10,9 @@ import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.MapperFeature;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 
 /**
  * Utilidades varias con metodos generales de serializacion, conversion a csv y conversion de fechas
@@ -31,19 +32,18 @@ public class Util {
 	 * @return el string que representa la lista serializada
 	 */
 	public static String serializeToJson(Class<?> pojoClass, List<?> pojoList, boolean asArray) {
-		try {
-			ObjectMapper mapper = new ObjectMapper();
-			if (asArray) {
-				mapper.configOverride(pojoClass).setFormat(JsonFormat.Value.forShape(JsonFormat.Shape.ARRAY));
-				String value = mapper.writeValueAsString(pojoList);
-				return value.replace("],", "],\n").replace("\"", ""); // con saltos de linea y sin comillas
-				// otra alternativa es utilizar las clases especificas para csv que suministra Jackson
-				// (jackson-dataformat-csv)
-			} else {
-				return mapper.writeValueAsString(pojoList).replaceAll("},", "},\n"); // con saltos de linea
-			}
-		} catch (JsonProcessingException e) {
-			throw new ApplicationException(e);
+		// Jackson 3 ordena por defecto las propiedades alfabeticamente, se desactiva para mantener
+		// el orden de declaracion de los campos
+		JsonMapper.Builder builder = JsonMapper.builder().disable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
+		if (asArray) {
+			ObjectMapper mapper = builder.withConfigOverride(pojoClass,
+					o -> o.setFormat(JsonFormat.Value.forShape(JsonFormat.Shape.ARRAY))).build();
+			String value = mapper.writeValueAsString(pojoList);
+			return value.replace("],", "],\n").replace("\"", ""); // con saltos de linea y sin comillas
+			// otra alternativa es utilizar las clases especificas para csv que suministra Jackson
+			// (jackson-dataformat-csv)
+		} else {
+			return builder.build().writeValueAsString(pojoList).replaceAll("},", "},\n"); // con saltos de linea
 		}
 	}
 	
