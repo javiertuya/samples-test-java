@@ -11,8 +11,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import giis.demo.tkrun.CarreraDisplayDTO;
 import giis.demo.tkrun.CarrerasModel;
 import giis.demo.util.ApplicationException;
@@ -144,7 +142,7 @@ public class TestInscripcion {
 	 * El uso de strings multilinea evita la necesidad de hacer escape de las comillas.
 	 */
 	@Test
-	public void testCarrerasActivasDtoJson() throws JsonProcessingException {
+	public void testCarrerasActivasDtoJson() {
 		CarrerasModel inscr = new CarrerasModel();
 		List<CarreraDisplayDTO> carreras = inscr.getListaCarreras(Util.isoStringToDate("2016-11-10"));
 		assertEquals("""
