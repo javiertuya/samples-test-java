@@ -33,7 +33,7 @@ jobs:
 
       - name: Publish surefire test report
         if: always()
-        uses: mikepenz/action-junit-report@v6.5.0
+        uses: mikepenz/action-junit-report@v6.6.1
         with:
           # Este action crea un check run separado llamado "test-report" que GitHub
           # puede mostrar como si fuera un job adicional incluso en otros workflows
